@@ -1,0 +1,66 @@
+[
+  {
+    "palavrasIncorretas": [
+      "todos",
+      "todas"
+    ],
+    "palavraCorreta": "todes",
+    "gêneroDaPalavra": "nb"
+  },
+  {
+    "palavrasIncorretas": [
+      "deficiente"
+    ],
+    "palavraCorreta": "pessoa com deficiência",
+    "gêneroDaPalavra": "fem"
+  },
+  {
+    "palavrasIncorretas": [
+      "deficientes"
+    ],
+    "palavraCorreta": "pessoas com deficiência",
+    "gêneroDaPalavra": "fem"
+  },
+  {
+    "palavrasIncorretas": [
+      "indío"
+    ],
+    "palavraCorreta": "indígena",
+    "gêneroDaPalavra": "fem"
+  },
+  {
+    "palavrasIncorretas": [
+      "indíos"
+    ],
+    "palavraCorreta": "indígenas",
+    "gêneroDaPalavra": "fem"
+  },
+  {
+    "palavrasIncorretas": [
+      "homem biológico"
+    ],
+    "palavraCorreta": "pessoa espermatogênica",
+    "gêneroDaPalavra": "fem"
+  },
+  {
+    "palavrasIncorretas": [
+      "homens biológicos"
+    ],
+    "palavraCorreta": "pessoas espermatogênicas",
+    "gêneroDaPalavra": "fem"
+  },
+  {
+    "palavrasIncorretas": [
+      "mulher biológica"
+    ],
+    "palavraCorreta": "pessoas ovarianas",
+    "gêneroDaPalavra": "fem"
+  },
+  {
+    "palavrasIncorretas": [
+      "mulheres biológicas"
+    ],
+    "palavraCorreta": "pessoas ovarianas",
+    "gêneroDaPalavra": "fem"
+  }
+]

@@ -1,0 +1,38 @@
+[
+  {
+    "palavrasIncorretas": [
+      "gaita"
+    ],
+    "palavraCorreta": "sanfona",
+    "gêneroDaPalavra": "nb"
+  },
+  {
+    "palavrasIncorretas": [
+      "gaitas"
+    ],
+    "palavraCorreta": "sanfonas",
+    "gêneroDaPalavra": "fem"
+  },
+  {
+    "palavrasIncorretas": [
+      "caldo de cana"
+    ],
+    "palavraCorreta": "garapa",
+    "gêneroDaPalavra": "fem"
+  },
+  {
+    "palavrasIncorretas": [
+      "bergamota",
+      "mexirica"
+    ],
+    "palavraCorreta": "tangerina",
+    "gêneroDaPalavra": "fem"
+  },
+  {
+    "palavrasIncorretas": [
+      "chimarrão"
+    ],
+    "palavraCorreta": "tereré",
+    "gêneroDaPalavra": "masc"
+  }
+]
