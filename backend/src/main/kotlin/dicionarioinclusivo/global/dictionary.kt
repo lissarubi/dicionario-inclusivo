@@ -15,7 +15,7 @@ val client = HttpClient()
 var dictionary = generateDictionary()
 
 fun generateDictionary() = runBlocking {
-    val dbBrute: String = client.get("https://pastebin.com/raw/q9UMhLxF").bodyAsText()
+    val dbBrute: String = client.get("https://raw.githubusercontent.com/lissatransborda/dicionario-inclusivo/main/database/db.json").bodyAsText()
 
     val db = Json.decodeFromString<List<Word>>(dbBrute)
     val dictionary = mutableListOf<DictionaryEntry>()
