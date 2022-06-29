@@ -26,7 +26,6 @@ export default {
   methods: {
     getText(textToTranslate) {
       this.textToTranslate = textToTranslate
-      console.log(this.textToTranslate)
     },
     async translate() {
       let response = await axios.post(process.env.BACKEND_URL, {
