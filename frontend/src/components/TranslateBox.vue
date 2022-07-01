@@ -28,7 +28,7 @@ export default {
       this.textToTranslate = textToTranslate
     },
     async translate() {
-      let response = await axios.post(process.env.BACKEND_URL, {
+      let response = await axios.post(`${process.env.BACKEND_URL}/translate`, {
         content: this.textToTranslate
       })
       this.textTranslated = response.data
