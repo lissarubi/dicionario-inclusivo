@@ -34,6 +34,9 @@ export default {
 }
 </script>
 
+<style src='../global.css'>
+</style>
+
 <style>
 .translateBox {
   margin: 0 auto;
