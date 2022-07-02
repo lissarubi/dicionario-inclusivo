@@ -1,12 +1,7 @@
 <template>
   <div class="translateBox">
-    <textarea
-      id="textToTranslate"
-      @input="getText($event.target.value)"
-      name="textToTranslate"
-      rows="10"
-      cols="50"
-    ></textarea>
+    <textarea id="textToTranslate" @input="getText($event.target.value)" name="textToTranslate" rows="10"
+      cols="50"></textarea>
 
     <button @click="translate" class="translateButton">Corrigir</button>
 
@@ -21,19 +16,21 @@ export default {
   name: "TranslateBoxComponent",
   data: () => ({
     textToTranslate: String,
-    textTranslated: ''
+    textTranslated: '',
+    BACKEND_URL: process.env.VUE_APP_BACKEND_URL,
   }),
   methods: {
     getText(textToTranslate) {
       this.textToTranslate = textToTranslate
     },
     async translate() {
-      let response = await axios.post(`${process.env.BACKEND_URL}/translate`, {
+      console.log(this.BACKEND_URL)
+      let response = await axios.post(`${this.BACKEND_URL}/translate`, {
         content: this.textToTranslate
       })
       this.textTranslated = response.data
     }
-  }
+  },
 }
 </script>
 
@@ -45,6 +42,7 @@ export default {
   flex-direction: column;
   justify-content: space-between;
 }
+
 textarea {
   border-radius: 6px;
   border-style: solid;
@@ -70,6 +68,7 @@ button:hover {
   border-color: var(--darkGreen);
   color: white;
 }
+
 .translatedText {
   text-align: justify;
   margin-top: 3vh;

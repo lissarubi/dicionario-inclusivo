@@ -8,7 +8,7 @@ import io.ktor.server.request.*
 import io.ktor.server.response.*
 
 fun Application.configureHTTP() {
-  val host = environment.config.propertyOrNull("ktor.deployment.port") ?: "*"
+  val host = environment.config.property("ktor.deployment.CLIENT_URL")
   install(CORS) {
     allowMethod(HttpMethod.Put)
     allowMethod(HttpMethod.Post)
@@ -17,7 +17,12 @@ fun Application.configureHTTP() {
     allowHeader(HttpHeaders.ContentType)
     allowCredentials = true
     allowNonSimpleContentTypes = true
-    allowHost(host.toString())
+    allowSameOrigin = true
+    if (host.toString() == "*") {
+      anyHost()
+    } else {
+      allowHost(host.toString(), listOf("http", "https"))
+    }
   }
   install(Compression) {
     gzip { priority = 1.0 }

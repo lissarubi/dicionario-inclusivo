@@ -1,0 +1,15 @@
+FROM node
+
+ENV BACKEND_URL http://backend:8000
+
+WORKDIR /usr/src/app/dicionarioinclusivo
+
+COPY package*.json ./
+
+RUN npm install
+
+COPY . .
+
+EXPOSE 8001
+
+CMD ["npm", "run", "serve"]
