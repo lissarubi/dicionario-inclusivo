@@ -7,6 +7,7 @@ Projeto feito em VueJS, que basicamente há um campo, onde podemos escrever ou c
 ## Rotas
 
 `/` - Página inicial, sendo a parte de tradução do dicionário
+`/contribuir` - Página para contribuir com o projeto, adicionando uma nova palavra
 `/sobre` - Página com informações sobre o projeto
 
 ## Instalar dependências do projeto
@@ -16,16 +17,19 @@ yarn install
 ```
 
 ### Compilar e executar o projeto em modo de desenvolvimento
+
 ```
 yarn serve
 ```
 
 ### Compilar para produção
+
 ```
 yarn build
 ```
 
-### *Linters* e correções automáticas no código
+### _Linters_ e correções automáticas no código
+
 ```
 yarn lint
 ```
