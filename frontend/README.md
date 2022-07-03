@@ -6,9 +6,13 @@ Projeto feito em VueJS, que basicamente há um campo, onde podemos escrever ou c
 
 ## Rotas
 
-`/` - Página inicial, sendo a parte de tradução do dicionário
-`/contribuir` - Página para contribuir com o projeto, adicionando uma nova palavra
-`/sobre` - Página com informações sobre o projeto
+- `/`: Página inicial, sendo a parte de tradução do dicionário
+- `/contribuir`: Página para contribuir com o projeto, adicionando uma nova palavra
+- `/sobre`: Página com informações sobre o projeto
+
+## Variáveis de ambiente
+
+- `VUE_APP_BACKEND_URL`: URL do backend do projeto
 
 ## Instalar dependências do projeto
 
