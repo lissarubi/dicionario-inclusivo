@@ -5,14 +5,14 @@
 </template>
 
 <script>
-import TranslateBox from '../components/TranslateBox.vue'
+import TranslateBox from "../components/TranslateBox.vue";
 
 export default {
-  name: 'translatePage',
+  name: "translatePage",
   components: {
-    TranslateBox
-  }
-}
+    TranslateBox,
+  },
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

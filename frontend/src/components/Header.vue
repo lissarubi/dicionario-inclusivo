@@ -5,6 +5,10 @@
     <nav class="header-nav">
       <router-link to="/" class="header-anchor">Traduzir</router-link>
       <strong>|</strong>
+      <router-link to="/contribuir" class="header-anchor"
+        >Contribuir</router-link
+      >
+      <strong>|</strong>
       <router-link to="/sobre" class="header-anchor">Sobre</router-link>
       <strong>|</strong>
     </nav>
@@ -13,8 +17,8 @@
 
 <script>
 export default {
-  name: 'HeaderComponent',
-}
+  name: "HeaderComponent",
+};
 </script>
 
 <style scoped>

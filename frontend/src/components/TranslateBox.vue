@@ -1,43 +1,49 @@
 <template>
   <div class="translateBox">
-    <textarea id="textToTranslate" @input="getText($event.target.value)" name="textToTranslate" rows="10"
-      cols="50"></textarea>
+    <textarea
+      id="textToTranslate"
+      @input="getText($event.target.value)"
+      name="textToTranslate"
+      rows="10"
+      cols="50"
+    ></textarea>
 
     <button @click="translate" class="translateButton">Corrigir</button>
 
-    <div class="translatedText" v-if="textTranslated != ''">{{ textTranslated }}</div>
+    <div class="translatedText" v-if="textTranslated != ''">
+      {{ textTranslated }}
+    </div>
   </div>
 </template>
 
 <script>
-import axios from 'axios'
+import axios from "axios";
 
 export default {
   name: "TranslateBoxComponent",
   data: () => ({
     textToTranslate: String,
-    textTranslated: '',
+    textTranslated: "",
     BACKEND_URL: process.env.VUE_APP_BACKEND_URL,
   }),
   methods: {
     getText(textToTranslate) {
-      this.textToTranslate = textToTranslate
+      this.textToTranslate = textToTranslate;
     },
     async translate() {
-      console.log(this.BACKEND_URL)
+      console.log(this.BACKEND_URL);
       let response = await axios.post(`${this.BACKEND_URL}/translate`, {
-        content: this.textToTranslate
-      })
-      this.textTranslated = response.data
-    }
+        content: this.textToTranslate,
+      });
+      this.textTranslated = response.data;
+    },
   },
-}
+};
 </script>
 
-<style src='../global.css'>
-</style>
+<style src="../global.css"></style>
 
-<style>
+<style scoped>
 .translateBox {
   margin: 0 auto;
   display: flex;
