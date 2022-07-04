@@ -10,6 +10,10 @@ Backend do projeto, que recebe o texto original e corrige as palavras, usando o 
 http POST /translate content="eu amo todos daqui"
 ```
 
+## Variáveis de ambiente
+
+- `CLIENT_URL`: URL do cliente (frontend), caso essa variável não seja especificada, qualquer host será aceito.
+
 E com isso será retornada a resposta:
 
 ```
