@@ -18,7 +18,7 @@ fun Application.configureHTTP() {
     allowCredentials = true
     allowNonSimpleContentTypes = true
     allowSameOrigin = true
-    if (host.toString() == "*") {
+    if (host.getString() == "*") {
       anyHost()
     } else {
       allowHost(host.toString(), listOf("http", "https"))
