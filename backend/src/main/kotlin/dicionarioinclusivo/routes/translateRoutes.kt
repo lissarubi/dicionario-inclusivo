@@ -21,21 +21,29 @@ fun Route.postTranslate() {
 }
 
 fun translate(textToTranslate: String): String {
-  val textBeingTranslated = textToTranslate.split(" ", ",", ".").toMutableList()
+  var textBeingTranslated = textToTranslate.split(" ", ",", ".").toMutableList()
 
   for ((index, word) in textBeingTranslated.withIndex()) {
     dictionary.forEach { dictionaryEntry ->
       val keys = dictionaryEntry.word.keys.first().split("-")
       keys.forEach { wrongWord ->
+
+      // check only one wrong word
         if (textBeingTranslated[index] == wrongWord) {
-          val plural = wrongWord.last() == 's'
           textBeingTranslated[index] =
               fixWrongWord(wrongWord, correctWord = dictionaryEntry.word.values.first(), word)
 
-          if (index != 0) {
-            textBeingTranslated[index - 1] =
-                fixWordGender(textBeingTranslated[index - 1], dictionaryEntry.wordGender, plural)
-          }
+        }
+
+        // check multiple wrong words
+        else if (wrongWord.contains(" ") && textBeingTranslated.joinToString(" ", ",", ".").contains(wrongWord)){
+          textBeingTranslated = fixMultipleWrongWords(wrongWord, correctWord = dictionaryEntry.word.values.first(), textBeingTranslated.joinToString(" "))
+        }
+
+        if (index != 0) {
+          val plural = wrongWord.last() == 's'
+          textBeingTranslated[index - 1] =
+            fixWordGender(textBeingTranslated[index - 1], dictionaryEntry.wordGender, plural)
         }
       }
     }
@@ -48,6 +56,13 @@ fun fixWrongWord(wrongWord: String, correctWord: String, textBeingTranslated: St
   correctText = correctText.replace(wrongWord, correctWord)
 
   return correctText
+}
+
+fun fixMultipleWrongWords(wrongWord: String, correctWord: String, textBeingTranslated: String): MutableList<String> {
+  var correctText = textBeingTranslated
+  correctText = correctText.replace(wrongWord, correctWord)
+
+  return correctText.split(" ", ",", ".") as MutableList<String>
 }
 
 fun fixWordGender(textBeingTranslated: String, wordGender: String, plural: Boolean): String {
