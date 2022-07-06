@@ -27,23 +27,30 @@ fun translate(textToTranslate: String): String {
     dictionary.forEach { dictionaryEntry ->
       val keys = dictionaryEntry.word.keys.first().split("-")
       keys.forEach { wrongWord ->
+        var matchWord = false
+        val plural = wrongWord.last() == 's'
 
-      // check only one wrong word
+        // check only one wrong word
         if (textBeingTranslated[index] == wrongWord) {
           textBeingTranslated[index] =
               fixWrongWord(wrongWord, correctWord = dictionaryEntry.word.values.first(), word)
 
+          if (index != 0){
+            textBeingTranslated[index - 1] =
+              fixWordGender(textBeingTranslated[index - 1], dictionaryEntry.wordGender, plural)
+          }
         }
 
         // check multiple wrong words
         else if (wrongWord.contains(" ") && textBeingTranslated.joinToString(" ", ",", ".").contains(wrongWord)){
-          textBeingTranslated = fixMultipleWrongWords(wrongWord, correctWord = dictionaryEntry.word.values.first(), textBeingTranslated.joinToString(" "))
-        }
+          val wrongWordSplit = wrongWord.split(" ")
+          val wrongWordIndex = textBeingTranslated.indexOf(wrongWordSplit[0])
 
-        if (index != 0) {
-          val plural = wrongWord.last() == 's'
-          textBeingTranslated[index - 1] =
-            fixWordGender(textBeingTranslated[index - 1], dictionaryEntry.wordGender, plural)
+          if (wrongWordIndex != 0){
+            textBeingTranslated[wrongWordIndex - 1] = fixWordGender(textBeingTranslated[wrongWordIndex - 1], dictionaryEntry.wordGender, plural)
+          }
+
+          textBeingTranslated = fixMultipleWrongWords(wrongWord, correctWord = dictionaryEntry.word.values.first(), textBeingTranslated.joinToString(" "))
         }
       }
     }
