@@ -4,14 +4,7 @@
 
     <p>
       Para contribuir com o projeto, preencha o formulário abaixo com a nova
-      palavra, e gere o novo dicionário. Com isso, um arquivo chamado
-      <code>db.json</code> será baixado. Esse arquivo representa o dicionário
-      completo.
-    </p>
-
-    <p>
-      Após isso, veja esse vídeo para inserir o seu novo dicionário na
-      plataforma.
+      palavra, que a sua sugestão será analisada, e depois inserida no banco de dados.
     </p>
 
     <h2>Palavra(s) incorreta(s)</h2>
@@ -29,11 +22,24 @@
 
     <div class="wordGenderDiv">
       <select name="wordGender" class="wordGender" v-model="wordGender">
-        <option value="nb">Não Binárie</option>
+        <option value="nb">Não Binárie/Neutro</option>
         <option value="fem">Feminina</option>
         <option value="masc">Masculino</option>
       </select>
     </div>
+
+    <p>
+      Caso você tenha dúvida sobre o gênero da palavra, é basicamente com qual artigo você usa a palavra, então por
+      exemplo, <strong>cadeira</strong> é uma palavra de gênero feminino, porque é <strong>A</strong> cadeira, não
+      <strong>O</strong> cadeira.
+    </p>
+
+    <p>
+      Palavras não bináries/neutras são aquelas que não inferem gênero nenhum. Como <strong>todes</strong>,
+      <strong>amigues</strong> e <strong>alunes</strong>. Você também pode selecionar essa opção para palavras que podem
+      ser usadas para qualquer gênero, como <strong>indígena</strong>, que pode ser <strong>O</strong> indígena, ou
+      <strong>A</strong> indígena.
+    </p>
 
     <div class="generateDictionaryDiv">
       <button class="generateDictionary" @click="generateDictionary">
