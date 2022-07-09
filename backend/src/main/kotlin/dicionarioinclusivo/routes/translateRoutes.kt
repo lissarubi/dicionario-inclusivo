@@ -2,7 +2,6 @@ package dicionarioinclusivo.routes
 
 import dicionarioinclusivo.global.dictionary
 import dicionarioinclusivo.models.Text
-import io.ktor.client.*
 import io.ktor.server.application.*
 import io.ktor.server.request.*
 import io.ktor.server.response.*
@@ -27,7 +26,6 @@ fun translate(textToTranslate: String): String {
     dictionary.forEach { dictionaryEntry ->
       val keys = dictionaryEntry.word.keys.first().split("-")
       keys.forEach { wrongWord ->
-        var matchWord = false
         val plural = wrongWord.last() == 's'
 
         // check only one wrong word

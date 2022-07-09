@@ -1,5 +1,6 @@
 package dicionarioinclusivo
 
+import database.initDB
 import io.ktor.server.application.*
 import dicionarioinclusivo.plugins.*
 
@@ -8,6 +9,8 @@ fun main(args: Array<String>): Unit =
 
 @Suppress("unused")
 fun Application.module() {
+    initDB()
+
     configureRouting()
     configureSerialization()
     configureHTTP()

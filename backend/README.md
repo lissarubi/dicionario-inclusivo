@@ -4,7 +4,7 @@ Backend do projeto, que recebe o texto original e corrige as palavras, usando o 
 
 ## Rotas
 
-`/translate` - Rota POST de tradução, recebendo uma string `content` no corpo da requisição, com o texto, dessa forma:
+- `/translate` - Rota POST de tradução, recebendo uma string `content` no corpo da requisição, com o texto, dessa forma:
 
 ```
 http POST /translate content="eu amo todos daqui"

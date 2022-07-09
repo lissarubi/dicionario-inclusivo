@@ -1,5 +1,6 @@
 package dicionarioinclusivo.plugins
 
+import dicionarioinclusivo.routes.newWordRoutes
 import dicionarioinclusivo.routes.translateRoutes
 import io.ktor.server.routing.*
 import io.ktor.http.*
@@ -19,6 +20,7 @@ fun Application.configureRouting() {
     }
     routing {
         translateRoutes()
+        newWordRoutes()
     }
 }
 class AuthenticationException : RuntimeException()
