@@ -1,11 +1,33 @@
 services:
+
+  postgres:
+    image: 'postgres'
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: "default"
+      POSTGRES_PASSWORD: "default"
+      POSTGRES_DB: "dicionarioinclusivo"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data/
+    network_mode: bridge
+    networks:
+      - public
+
   backend:
     build: 
       context: backend
     ports:
-      - "8000:8000"
+      - 8000:8000
+    depends_on:
+      - "postgres"
     environment:
-      - PORT=8000
+      PORT: 8000
+      DATABASE_USER: "default"
+      DATABASE_PASSWORD: "default"
+      DATABASE_SERVER: postgres:5432
+    network_mode: bridge
     networks:
       - public
 
@@ -14,14 +36,17 @@ services:
       context: ./frontend
       dockerfile: Dockerfile-dev
     ports:
-      - "8001:8001"
+      - 8001:8001
     depends_on:
       - "backend"
     environment:
       - PORT=8001
       - VUE_APP_BACKEND_URL=http://localhost:8000
+    network_mode: bridge
     networks:
       - public
 
 networks:
   public:
+volumes:
+  postgres-data:
