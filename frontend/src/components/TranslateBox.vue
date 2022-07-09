@@ -1,12 +1,7 @@
 <template>
   <div class="translateBox">
-    <textarea
-      id="textToTranslate"
-      @input="getText($event.target.value)"
-      name="textToTranslate"
-      rows="10"
-      cols="50"
-    ></textarea>
+    <textarea id="textToTranslate" @input="getText($event.target.value)" name="textToTranslate" rows="10"
+      cols="50"></textarea>
 
     <button @click="translate" class="translateButton">Corrigir</button>
 
@@ -41,7 +36,8 @@ export default {
 };
 </script>
 
-<style src="../global.css"></style>
+<style src="../global.css">
+</style>
 
 <style scoped>
 .translateBox {

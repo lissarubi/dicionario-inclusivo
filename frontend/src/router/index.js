@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import Translate from "../pages/Translate.vue";
 import About from "../pages/About.vue";
 import Contribute from "../pages/Contribuir.vue";
+import NewWords from "../pages/NovasPalavras.vue";
 
 const routes = [
   {
@@ -18,6 +19,11 @@ const routes = [
     path: "/contribuir",
     name: "contribuir",
     component: Contribute,
+  },
+  {
+    path: "/novas",
+    name: "novasPalavras",
+    component: NewWords,
   },
 ];
 

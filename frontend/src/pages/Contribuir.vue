@@ -42,8 +42,8 @@
     </p>
 
     <div class="generateDictionaryDiv">
-      <button class="generateDictionary" @click="generateDictionary">
-        Gerar Dicionário
+      <button class="saveWord" @click="saveWord">
+        Adicionar palavra
       </button>
     </div>
   </section>
@@ -51,14 +51,15 @@
 
 <script>
 import axios from "axios";
-import { saveAs } from "file-saver";
+import VueSimpleAlert from "vue3-simple-alert";
 
 export default {
   name: "ContributePage",
 
   data: () => ({
+    BACKEND_URL: process.env.VUE_APP_BACKEND_URL,
+
     wrongWordCount: 1,
-    dictionary: [],
 
     correctWord: "",
     wordGender: "nb",
@@ -68,32 +69,22 @@ export default {
     addWrongWord() {
       this.wrongWordCount++;
     },
-    generateDictionary() {
+    saveWord() {
       let wrongWords = [];
       let wrongWordsElements = document.getElementsByClassName("wrongWord");
-      console.log(wrongWordsElements);
 
       for (let i = 1; i <= this.wrongWordCount; i++) {
         wrongWords.push(wrongWordsElements[i - 1].value);
       }
 
-      this.dictionary.push({
-        palavrasIncorretas: wrongWords,
-        palavrasCorretas: this.correctWord,
-        gêneroDaPalavra: this.wordGender,
-      });
+      axios.post(`${this.BACKEND_URL}/new`, {
+        wrongWords,
+        correctWord: this.correctWord,
+        wordGender: this.wordGender
+      })
 
-      let dictionaryString = JSON.stringify(this.dictionary);
-
-      let dictionaryFile = new Blob([dictionaryString], { type: "text/plain" });
-      saveAs(dictionaryFile, "db.json");
+      VueSimpleAlert.fire({ title: "Palavra adicionada!", type: "success" })
     },
-  },
-  async mounted() {
-    let response = await axios.get(
-      "https://raw.githubusercontent.com/lissatransborda/dicionario-inclusivo/main/database/db.json"
-    );
-    this.dictionary = response.data;
   },
 };
 </script>
@@ -153,7 +144,7 @@ input {
   font-size: 1em;
 }
 
-.generateDictionary {
+.saveWord {
   font-size: 2.5ch;
   padding: 0.2em;
   border-style: solid;
