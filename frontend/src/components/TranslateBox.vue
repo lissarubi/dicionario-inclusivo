@@ -1,18 +1,24 @@
 <template>
   <div class="translateBox">
-    <textarea id="textToTranslate" @input="getText($event.target.value)" name="textToTranslate" rows="10"
-      cols="50"></textarea>
+    <textarea id="textToTranslate" @input="getText($event.target.value)" name="textToTranslate" rows="10" cols="50" />
 
     <button @click="translate" class="translateButton">Corrigir</button>
 
-    <div class="translatedText" v-if="textTranslated != ''">
-      {{ textTranslated }}
+    <div class="resultBox" v-if="textTranslated != ''">
+      <div class="translatedText">
+        {{ textTranslated }}
+      </div>
+
+      <button class="copyButton" @click="copyText">
+        <font-awesome-icon icon="fa-solid fa-copy" />
+      </button>
     </div>
   </div>
 </template>
 
 <script>
 import axios from "axios";
+import VueSimpleAlert from "vue3-simple-alert";
 
 export default {
   name: "TranslateBoxComponent",
@@ -32,6 +38,10 @@ export default {
       });
       this.textTranslated = response.data;
     },
+    copyText() {
+      navigator.clipboard.writeText(this.textTranslated)
+      VueSimpleAlert.fire({ title: "Texto copiado!", type: "success" })
+    }
   },
 };
 </script>
@@ -52,12 +62,12 @@ textarea {
   border-radius: 6px;
   border-style: solid;
   border-color: #ddd;
-  width: 40%;
+  width: 60%;
   height: 30vh;
   font-size: 2ch;
 }
 
-button {
+.translateButton {
   margin-top: 3vh;
   width: 20%;
   font-size: 2ch;
@@ -68,18 +78,37 @@ button {
   transition-duration: 400ms;
 }
 
-button:hover {
+.translateButton:hover {
   background-color: var(--darkGreen);
   border-color: var(--darkGreen);
   color: white;
+}
+
+.resultBox {
+  width: 60%;
 }
 
 .translatedText {
   text-align: justify;
   margin-top: 3vh;
   background-color: #f7f7f7;
-  width: 40%;
+  width: 100%;
   min-height: 10vh;
   padding: 0.5em;
+}
+
+.copyButton {
+  font-size: 2ch;
+  background-color: #efefef;
+  border-color: #ddd;
+  width: 100%;
+  border-style: solid;
+  border-radius: 5px;
+  transition-duration: 400ms;
+}
+
+.copyButton:hover {
+  background-color: var(--lightBlue);
+  border-color: var(--lightBlue);
 }
 </style>

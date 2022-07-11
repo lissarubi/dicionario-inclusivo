@@ -20,7 +20,9 @@
           <span class="wordGender" v-if="word.wordGender == 'fem'">Feminina</span>
           <span class="wordGender" v-if="word.wordGender == 'fem'">Masculino</span>
         </div>
-        <button class="deleteButton" @click="deleteWord(word.id)">X</button>
+        <button class="deleteButton" @click="deleteWord(word.id)">
+          <font-awesome-icon icon="fa-solid fa-trash" />
+        </button>
       </div>
     </div>
   </section>
