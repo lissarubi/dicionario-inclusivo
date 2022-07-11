@@ -34,6 +34,7 @@
 <script>
 import axios from "axios";
 import VueSimpleAlert from "vue3-simple-alert";
+import { saveAs } from "file-saver";
 
 export default {
   name: "NewWordsPage",
@@ -68,7 +69,9 @@ export default {
         })
       })
 
-      console.log(JSON.stringify(this.dictionary))
+      let dictionaryFile = new Blob([JSON.stringify(this.words)], { type: "text/plain" });
+      saveAs(dictionaryFile, "db.json");
+      VueSimpleAlert.fire({ title: "Dicionário baixado!", type: "success" })
     },
     async deleteWordRequest(id, password) {
       try {
