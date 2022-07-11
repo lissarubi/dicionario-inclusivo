@@ -69,7 +69,7 @@ export default {
         })
       })
 
-      let dictionaryFile = new Blob([JSON.stringify(this.words)], { type: "text/plain" });
+      let dictionaryFile = new Blob([JSON.stringify(this.dictionary)], { type: "text/plain" });
       saveAs(dictionaryFile, "db.json");
       VueSimpleAlert.fire({ title: "Dicionário baixado!", type: "success" })
     },
