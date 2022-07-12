@@ -9,21 +9,36 @@ import io.ktor.http.*
 import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
+import java.util.*
+import java.util.concurrent.Executors
+import java.util.concurrent.TimeUnit
 
-val client = HttpClient()
+class Dictionary{
+    private val client = HttpClient()
 
-var dictionary = generateDictionary()
+    var dictionary = generateDictionary()
 
-fun generateDictionary() = runBlocking {
-    val dbBrute: String = client.get("https://raw.githubusercontent.com/lissatransborda/dicionario-inclusivo/main/database/db.json").bodyAsText()
-
-    val db = Json.decodeFromString<List<Word>>(dbBrute)
-    val dictionary = mutableListOf<DictionaryEntry>()
-
-    db.forEach {
-        val wrongWords = it.palavrasIncorretas.joinToString("-")
-        dictionary.add(DictionaryEntry(mapOf(wrongWords to it.palavraCorreta), it.gêneroDaPalavra))
+    init {
+        generateDictionaryPeriodically(3)
+    }
+    private fun generateDictionaryPeriodically(time: Long){
+        val executorService = Executors.newSingleThreadScheduledExecutor()
+        executorService.scheduleAtFixedRate({
+            dictionary = generateDictionary()
+        }, time, time, TimeUnit.MINUTES)
     }
 
-    return@runBlocking dictionary
+    private fun generateDictionary(): MutableList<DictionaryEntry> = runBlocking {
+        val dbBrute: String = client.get("https://raw.githubusercontent.com/lissatransborda/dicionario-inclusivo/main/database/db.json").bodyAsText()
+
+        val db = Json.decodeFromString<List<Word>>(dbBrute)
+        val dictionaryEntries = mutableListOf<DictionaryEntry>()
+
+        db.forEach {
+            val wrongWords = it.palavrasIncorretas.joinToString("-")
+            dictionaryEntries.add(DictionaryEntry(mapOf(wrongWords to it.palavraCorreta), it.gêneroDaPalavra))
+        }
+
+        return@runBlocking dictionaryEntries
+    }
 }

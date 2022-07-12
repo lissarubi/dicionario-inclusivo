@@ -1,11 +1,13 @@
 package dicionarioinclusivo.routes
 
-import dicionarioinclusivo.global.dictionary
+import dicionarioinclusivo.global.Dictionary
 import dicionarioinclusivo.models.Text
 import io.ktor.server.application.*
 import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
+
+val dictionary = Dictionary().dictionary
 
 fun Route.translateRoutes() {
   route("/translate") { postTranslate() }
@@ -20,18 +22,19 @@ fun Route.postTranslate() {
 }
 
 fun translate(textToTranslate: String): String {
-  var textBeingTranslated = textToTranslate.split(" ", ",", ".").toMutableList()
+  var textBeingTranslated = textToTranslate.split(" ").toMutableList()
 
-  for ((index, word) in textBeingTranslated.withIndex()) {
+  for ((index, wordBrute) in textBeingTranslated.withIndex()) {
+    val word = wordBrute.replace(",", "").replace(".", "").replace(":", "").replace(";", "").replace("\n", "")
     dictionary.forEach { dictionaryEntry ->
       val keys = dictionaryEntry.word.keys.first().split("-")
       keys.forEach { wrongWord ->
         val plural = wrongWord.last() == 's'
 
         // check only one wrong word
-        if (textBeingTranslated[index] == wrongWord) {
+        if (word == wrongWord) {
           textBeingTranslated[index] =
-              fixWrongWord(wrongWord, correctWord = dictionaryEntry.word.values.first(), word)
+              fixWrongWord(wrongWord, correctWord = dictionaryEntry.word.values.first(), textBeingTranslated[index])
 
           if (index != 0){
             textBeingTranslated[index - 1] =
@@ -40,9 +43,10 @@ fun translate(textToTranslate: String): String {
         }
 
         // check multiple wrong words
-        else if (wrongWord.contains(" ") && textBeingTranslated.joinToString(" ", ",", ".").contains(wrongWord)){
+        else if (wrongWord.contains(" ") && textBeingTranslated.joinToString(" ").contains(wrongWord)){
           val wrongWordSplit = wrongWord.split(" ")
-          val wrongWordIndex = textBeingTranslated.indexOf(wrongWordSplit[0])
+          val textToCheck = textBeingTranslated.joinToString(" ").replace(",", "").replace(".", "").replace(":", "").replace(";", "").replace("\n", "").split(" ")
+          val wrongWordIndex = textToCheck.indexOf(wrongWordSplit[0])
 
           if (wrongWordIndex != 0){
             textBeingTranslated[wrongWordIndex - 1] = fixWordGender(textBeingTranslated[wrongWordIndex - 1], dictionaryEntry.wordGender, plural)
@@ -67,7 +71,7 @@ fun fixMultipleWrongWords(wrongWord: String, correctWord: String, textBeingTrans
   var correctText = textBeingTranslated
   correctText = correctText.replace(wrongWord, correctWord)
 
-  return correctText.split(" ", ",", ".") as MutableList<String>
+  return correctText.split(" ") as MutableList<String>
 }
 
 fun fixWordGender(textBeingTranslated: String, wordGender: String, plural: Boolean): String {
