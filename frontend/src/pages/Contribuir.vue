@@ -135,6 +135,10 @@ input {
   margin-bottom: 1.5em;
 }
 
+.correctWord {
+  width: 40%;
+}
+
 .wordGender {
   margin-bottom: 2em;
   border-style: solid;
@@ -156,7 +160,7 @@ input {
 @media screen and (max-width: 1000px) {
   .contribute {
     text-align: left;
-  width: 80%;
+    width: 80%;
   }
 
   p {
@@ -166,8 +170,9 @@ input {
   .wrongWords {
     width: 100%;
   }
-  .correctWord{
-      width: 100%;
-    }
+
+  .correctWord {
+    width: 100%;
+  }
 }
 </style>
