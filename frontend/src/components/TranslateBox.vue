@@ -111,4 +111,14 @@ textarea {
   background-color: var(--lightBlue);
   border-color: var(--lightBlue);
 }
+
+@media screen and (max-width: 1000px) {
+  textarea {
+    width: 80%;
+  }
+  .translateButton {
+    font-size: 2.5ch;
+    width: 30%;
+  }
+}
 </style>

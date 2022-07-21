@@ -47,4 +47,10 @@ export default {
 p {
   font-size: 1.6ch;
 }
+
+@media screen and (max-width: 1000px) {
+  .textContent {
+    width: 80%;
+  }
+}
 </style>

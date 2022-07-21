@@ -152,4 +152,22 @@ input {
   border-color: #fafafa;
   background-color: var(--lightBlue);
 }
+
+@media screen and (max-width: 1000px) {
+  .contribute {
+    text-align: left;
+  width: 80%;
+  }
+
+  p {
+    text-align: justify;
+  }
+
+  .wrongWords {
+    width: 100%;
+  }
+  .correctWord{
+      width: 100%;
+    }
+}
 </style>
