@@ -6,8 +6,7 @@ import kotlin.test.*
 
 class ApplicationTest {
   @Test
-  fun testRoot() = testApplication {
-    application { configureRouting() }
+  fun testApp() = testApplication {
     assertEquals(expected = true, actual = true)
   }
 }
