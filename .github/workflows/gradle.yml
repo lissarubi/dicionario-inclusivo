@@ -21,9 +21,15 @@ jobs:
       with:
         java-version: '11'
         distribution: 'temurin'
+        persist-credentials: false
+        fetch-depth: 0
     - name: Build with Gradle
       run: |
-        git checkout backend 
         cd backend
         ./gradlew build
-        git push
+
+    - name: Commit & Push changes
+      uses: Andro999b/push@v1.3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: backend
