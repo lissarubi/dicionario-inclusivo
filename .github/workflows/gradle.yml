@@ -26,6 +26,7 @@ jobs:
         cd backend
         ./gradlew build
 
+    - uses: actions/checkout@v3
       with:
         persist-credentials: false
         fetch-depth: 0
