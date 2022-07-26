@@ -1,1 +1,1 @@
-web: ./build/install/dicionarioinclusivo/bin/dicionarioinclusivo
+web: ./build/install/dicionarioinclusivo.backend/bin/dicionarioinclusivo.backend
