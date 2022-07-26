@@ -23,7 +23,7 @@ jobs:
         distribution: 'temurin'
     - name: Build with Gradle
       run: |
-        git branch -m backend 
+        git checkout backend 
         cd backend
         ./gradlew build
         git push
