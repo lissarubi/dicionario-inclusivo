@@ -15,6 +15,10 @@ tasks.withType<Jar> {
     }
 }
 
+tasks {
+    create("stage").dependsOn("installDist")
+}
+
 group = "dicionarioinclusivo"
 version = "0.0.1"
 application {
