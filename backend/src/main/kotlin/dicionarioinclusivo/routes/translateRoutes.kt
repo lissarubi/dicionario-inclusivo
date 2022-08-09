@@ -27,7 +27,6 @@ fun translate(textToTranslate: String): String {
   for ((index, wordBrute) in textBeingTranslated.withIndex()) {
     val word = wordBrute.replace(",", "").replace(".", "").replace(":", "").replace(";", "").replace("\n", "")
     dictionary.forEach { dictionaryEntry ->
-      println(dictionaryEntry)
       val keys = dictionaryEntry.word.keys.first().split("-")
       keys.forEach { wrongWord ->
         val plural = wrongWord.last() == 's'
