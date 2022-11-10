@@ -11,7 +11,7 @@ val password = System.getenv("DATABASE_PASSWORD") ?: "root"
 val server = System.getenv("DATABASE_SERVER") ?: "localhost:5432"
 
 fun initDB() {
-  if (development as Boolean){
+  if (development == "true"){
     Database.connect("jdbc:h2:mem:regular;DB_CLOSE_DELAY=-1;", "org.h2.Driver")
   }else{
     Database.connect("jdbc:postgresql://$server/dicionarioinclusivo", driver = "org.postgresql.Driver", user, password)
