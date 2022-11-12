@@ -10,18 +10,19 @@ import io.ktor.server.response.*
 fun Application.configureHTTP() {
   val host = environment.config.property("ktor.deployment.CLIENT_URL")
   install(CORS) {
-    allowMethod(HttpMethod.Put)
-    allowMethod(HttpMethod.Post)
     allowMethod(HttpMethod.Delete)
     allowHeader(HttpHeaders.Authorization)
     allowHeader(HttpHeaders.ContentType)
-    allowCredentials = true
     allowNonSimpleContentTypes = true
     allowSameOrigin = true
     if (host.getString() == "*") {
       anyHost()
     } else {
-      allowHost(host.toString(), listOf("http", "https"))
+      allowHost(
+          host.toString(),
+          listOf("http", "https"),
+          subDomains = listOf("dicionario-inclusivo")
+      )
     }
   }
   install(Compression) {
