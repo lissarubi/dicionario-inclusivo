@@ -62,5 +62,33 @@
     ],
     "palavraCorreta": "pessoas ovarianas",
     "gêneroDaPalavra": "fem"
+  },
+  {
+    "palavrasIncorretas": [
+      "denegrir"
+    ],
+    "palavraCorreta": "xingar",
+    "gêneroDaPalavra": "nb"
+  },
+  {
+    "palavrasIncorretas": [
+      "judiar"
+    ],
+    "palavraCorreta": "bater",
+    "gêneroDaPalavra": "nb"
+  },
+  {
+    "palavrasIncorretas": [
+      "judiar"
+    ],
+    "palavraCorreta": "bater",
+    "gêneroDaPalavra": "nb"
+  },
+  {
+    "palavrasIncorretas": [
+      "amigos"
+    ],
+    "palavraCorreta": "amigues",
+    "gêneroDaPalavra": "nb"
   }
 ]
