@@ -1,6 +1,6 @@
 # Dicionário Inclusivo
 
-> Projeto ainda em construção
+> Projeto disponível [aqui](https://dicionario-inclusivo.vercel.app/)
 
 O Dicionário inclusivo é um site que altera textos com expressões ou palavras não inclusivas, e substitui por alternativas inclusivas.
 
